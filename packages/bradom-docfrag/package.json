@@ -1,16 +1,16 @@
 {
-  "name": "bradom",
+  "name": "bradom-docfrag",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "data.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gendata": "node gendata"
+    "start": "ws"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "lerna": "^3.21.0"
+    "local-web-server": "^4.2.1"
   }
 }

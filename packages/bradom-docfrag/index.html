@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Naive DOM - Document Fragment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .red { background-color: rgba(255, 0, 0, 0.4); }
+    </style>
+  </head>
+  <body>
+    <h1>Document Fragment</h1>
+    <input id="filter"></input>
+    <ul id="app" class="red"></ul>
+
+    
+  <script type="module">
+    import data from './data.js';
+
+    const $app = document.getElementById('app');
+    const $filter = document.getElementById('filter');
+
+    const printData = (data, fragment) => {
+      data.forEach(item => {
+        const $li = document.createElement('li');
+        $li.innerText = item;
+        fragment.appendChild($li);
+      });
+      $app.appendChild(fragment);
+    }
+
+    $filter.addEventListener('keyup', ev => {
+      $app.innerHTML = '';
+      const value = ev.target.value;
+      const fragment = document.createDocumentFragment();
+      const newData = data
+        .filter(item => value ? item.substr(0, value.length) === value : true);
+
+      printData(newData, fragment);
+    });
+
+    const fragment = document.createDocumentFragment();
+    printData(data, fragment);
+  </script>
+  </body>
+</html>

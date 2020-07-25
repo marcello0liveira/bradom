@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Naive DOM - InnerHTML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .red { background-color: rgba(255, 0, 0, 0.4); }
+    </style>
+  </head>
+  <body>
+    <h1>InnerHTML</h1>
+    <input id="filter"></input>
+    <ul id="app" class="red"></ul>
+
+    
+  <script type="module">
+    import data from './data.js';
+
+    const $app = document.getElementById('app');
+    const $filter = document.getElementById('filter');
+
+    const printData = (data) => {
+      $app.innerHTML = data.map(item => `<li>${item}</li>`).join('');
+    }
+
+    $filter.addEventListener('keyup', ev => {
+      $app.innerHTML = '';
+      const value = ev.target.value;
+      const dataHTML = data
+        .filter(item => value ? item.substr(0, value.length) === value : true)
+
+      printData(dataHTML);
+    });
+    
+    printData(data);    
+  </script>
+  </body>
+</html>
